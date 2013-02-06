@@ -1,6 +1,6 @@
 = Activos
 
-[Activos](http://github.com/kainlite/activos)
+http://github.com/kainlite/activos
 
 === Build Status {<img src="https://secure.travis-ci.org/francocatena/activos.png"/>}[http://travis-ci.org/kainlite/activos]
 
