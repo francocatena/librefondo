@@ -1,0 +1,204 @@
+<div class="readonly-data">
+  <h2><%= @trust_fund %></h2>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'fund_id' %></strong>:
+    <%= @trust_fund.fund_id %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'name' %></strong>:
+    <%= @trust_fund.name %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'base' %></strong>:
+    <%= @trust_fund.base %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'coupon_tv' %></strong>:
+    <%= @trust_fund.coupon_tv %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'coupon_tv_cap' %></strong>:
+    <%= @trust_fund.coupon_tv_cap %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'coupon_tv_floor' %></strong>:
+    <%= @trust_fund.coupon_tv_floor %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'nominal_value' %></strong>:
+    <%= @trust_fund.nominal_value %>
+  </p>
+  <p>
+    <strong>rates:</strong>
+    <%= @trust_fund.rate.name %>
+    <%= @trust_fund.rate.kind  %>
+    <%= @trust_fund.rate.value %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'rate_id' %></strong>:
+    <%= @trust_fund.rate_id %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'differential_margin' %></strong>:
+    <%= @trust_fund.differential_margin %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'broadcast_cost' %></strong>:
+    <%= @trust_fund.broadcast_cost %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'price' %></strong>:
+    <%= @trust_fund.price %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'rating' %></strong>:
+    <%= @trust_fund.rating %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'buy_date' %></strong>:
+    <%= @trust_fund.buy_date %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'settlement_date' %></strong>:
+    <%= @trust_fund.settlement_date %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'broadcast_date' %></strong>:
+    <%= @trust_fund.broadcast_date %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'expiration_date' %></strong>:
+    <%= @trust_fund.expiration_date %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'tenancy' %></strong>:
+    <%= @trust_fund.tenancy %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'purchase_price' %></strong>:
+    <%= @trust_fund.purchase_price %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'tcpe' %></strong>:
+    <%= @trust_fund.tcpe %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'minimal_cost' %></strong>:
+    <%= @trust_fund.minimal_cost %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'maximal_cost' %></strong>:
+    <%= @trust_fund.maximal_cost %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'kind_id' %></strong>:
+    <%= @trust_fund.kind_id %>
+  </p>
+  <p>
+    <strong><%= TrustFund.human_attribute_name 'cut_date' %></strong>:
+    <%= @trust_fund.cut_date %>
+  </p>
+  <h1>Hoja 2</h1>
+  Calculos dinamicos - Pagos estimados:
+  <p>
+    %Amortizacion= (Numero_a_mano/precio emision)*100
+   <%= porcentaje_amortizacion = (3293227/@trust_fund.broadcast_cost)*100 %>
+   <%= "porcentaje_amortizacion_class = #{porcentaje_amortizacion.class}" %>
+  </p>
+
+  <p> 
+    Monto Amortizacion= porcentaje_amortizacion*precio emision
+    <%= porcentaje_amortizacion.class %> </ br>
+    <%= "porcentaje_amortizacion = #{porcentaje_amortizacion}" %>
+    <%= "precio_emision = #{@trust_fund.broadcast_cost}" %>
+    <%= (porcentaje_amortizacion*@trust_fund.broadcast_cost)/100 %>
+  </p>
+
+  <p> 
+    VR= VR_anterior-porcentaje_amortizacion_actual
+   <%= vr=100-porcentaje_amortizacion %>
+  </p> 
+
+  <p> 
+    Intereses= tcpe/(base*numero_de_dias_a_mano?*VR_anterior*precio_emision)
+   <%= (@trust_fund.tcpe/100)/(@trust_fund.base*33*100*@trust_fund.broadcast_cost) %>
+  </p>
+
+  <p> 
+    Total= Monto amortizacion + intereses
+   <%= @trust_fund.tcpe/(@trust_fund.base*30*100*@trust_fund.broadcast_cost) %>
+  </p>
+
+  Calculos dinamicos - Ajuste por aviso de Pago:
+  <p> 
+    porcentaje_amortizacion= porcentaje_amortizacion_calculado_arriba 
+   <%= porcentaje_amortizacion %>
+  </p>
+
+  <p> 
+    monto amortizacion = porcentaje_amortizacion*tenencia 
+   <%= monto_amortizacion_aproximado = porcentaje_amortizacion*@trust_fund.tenancy %>
+  </p>
+
+  <p> 
+     porcentaje_vn= porcentaje_vn_calculado_arriba 
+   <%= porcentaje_vn = porcentaje_vn_aproximado = 100-vr %>
+  </p>
+
+  <p> 
+     monto_vn_aproximado = porcentaje_vn_aproximado*tenencia 
+     <%= monto_vn_aproximado = porcentaje_vn*@trust_fund.tenancy %>
+  </p>
+
+  Calculo Renta:
+  <p> 
+     tasa_periodo = porcentaje_a_mano*base*dias_a_mano_al_final_de_la_hoja 
+     <%= tasa_periodo = 6*@trust_fund.base*32 %>
+  </p>
+
+  <p> 
+     % sobre vn inicial = tasa_periodo*porcentaje_vr 
+     <%= porcentaje_vn_inicial = tasa_periodo*porcentaje_vn %>
+  </p>
+
+  <p> 
+     monto_renta = porcentaje_vn_inicial*tenencia 
+     <%=  monto_renta = porcentaje_vn_inicial*@trust_fund.tenancy %>
+  </p>
+
+  Calculos Dinamicos - Pago Total:
+  <p> 
+     amortizacion = (monto_pago_estimado||monto_ajuste_por_aviso) 
+  </p>
+
+  <p> 
+     renta = current_renta 
+  </p>
+
+   <p> 
+     total = current_amortizacion + current_renta 
+  </p> 
+
+  Calculos dinamicos Duration wtf?:
+  <p> 
+     <%= "Algo raro" %>
+  </p>
+  <h1>Hoja 1</h1>
+  <p>
+    Interes = (valor residual anterior * cupon tf)/(base*dias-int)
+    <%= interes=(vr*0.192)/(@trust_fund.base*28) %>
+  </p>
+  <p>
+    Amortizacion + Intereses:
+    <%= interes+(porcentaje_amortizacion/100) %>
+  </p>
+  <p>
+    tir_efectiva=(((tir_compra*cupon_tv_cap)+1)^(365/(base/cupon_tv_cap)))-1
+    <%= tir_efectiva=(((19.3/100)/12)+1)**(365/(365/12))-1 %>
+  </p>
+
+</div>
+<div class="form-actions">
+  <%= link_to t('label.edit'), edit_trust_fund_path(@trust_fund) if can? :update, @trust_fund %> |
+  <%= link_to t('label.list'), trust_funds_path %>
+</div>

@@ -1,0 +1,21 @@
+<div class="readonly-data">
+  <h2><%= @kind %></h2>
+
+  <p>
+    <strong><%= Kind.human_attribute_name 'name' %></strong>:
+    <%= @kind.name %>
+  </p>
+  <p>
+    <strong><%= Kind.human_attribute_name 'daily_acrual' %></strong>:
+    <%= @kind.daily_acrual %>
+  </p>
+  <p>
+    <strong><%= Kind.human_attribute_name 'cut_date' %></strong>:
+    <%= @kind.cut_date %>
+  </p>
+  
+</div>
+<div class="form-actions">
+  <%= link_to t('label.edit'), edit_kind_path(@kind) if can? :update, @kind %> |
+  <%= link_to t('label.list'), kinds_path %>
+</div>

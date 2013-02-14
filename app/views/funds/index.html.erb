@@ -1,0 +1,38 @@
+<% if @funds.empty? %>
+  <%= render 'shared/empty_index' %>
+<% else %>
+  <div class="row">
+    <div class="span12">
+      <table class="table resource-list">
+        <thead>
+          <tr>
+            <th><%= Fund.human_attribute_name 'name' %></th>
+            <th><%= Fund.human_attribute_name 'rate_id' %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @funds.each do |fund| %>
+            <tr>
+              <td><%= fund.name %></td>
+              <td><%= fund.rate_id %></td>
+              <td><%= link_to_show fund %></td>
+              <td><%= link_to_edit edit_fund_path(fund) if can? :update, fund %></td>
+              <td><%= link_to_destroy fund if can? :destroy, fund %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= pagination_links(@funds) %>
+<% end %>
+
+<div class="form-actions">
+  <%= link_to(
+    t('view.funds.new', default: :'label.new'),
+    new_fund_path, class: 'btn btn-primary'
+  ) if can? :create, Fund %>
+</div>

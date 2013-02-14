@@ -1,0 +1,21 @@
+<div class="readonly-data">
+  <h2><%= @rate %></h2>
+
+  <p>
+    <strong><%= Rate.human_attribute_name 'name' %></strong>:
+    <%= @rate.name %>
+  </p>
+  <p>
+    <strong><%= Rate.human_attribute_name 'value' %></strong>:
+    <%= @rate.value %>
+  </p>
+  <p>
+    <strong><%= Rate.human_attribute_name 'kind' %></strong>:
+    <%= @rate.kind %>
+  </p>
+  
+</div>
+<div class="form-actions">
+  <%= link_to t('label.edit'), edit_rate_path(@rate) if can? :update, @rate %> |
+  <%= link_to t('label.list'), rates_path %>
+</div>

@@ -1,0 +1,34 @@
+<%= simple_form_for(@trust_fund) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :fund_id %>
+    <%= f.input :name %>
+    <%= f.input :base %>
+    <%= f.input :coupon_tv %>
+    <%= f.input :coupon_tv_cap %>
+    <%= f.input :coupon_tv_floor %>
+    <%= f.input :nominal_value %>
+    <%= f.input :rate_id %>
+    <%= f.input :differential_margin %>
+    <%= f.input :broadcast_cost %>
+    <%= f.input :price %>
+    <%= f.input :rating %>
+    <%= f.input :buy_date %>
+    <%= f.input :settlement_date %>
+    <%= f.input :broadcast_date %>
+    <%= f.input :expiration_date %>
+    <%= f.input :tenancy %>
+    <%= f.input :purchase_price %>
+    <%= f.input :tcpe %>
+    <%= f.input :minimal_cost %>
+    <%= f.input :maximal_cost %>
+    <%= f.input :kind_id %>
+    <%= f.input :cut_date %>
+  </div>
+
+  <div class="form-actions">
+    <div class="pull-right"><%= yield :form_actions %></div>
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>

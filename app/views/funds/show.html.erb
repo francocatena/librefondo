@@ -1,0 +1,28 @@
+<div class="readonly-data">
+  <h2><%= @fund %></h2>
+
+  <p>
+    <strong><%= Fund.human_attribute_name 'name' %></strong>:
+    <%= @fund.name %>
+  </p>
+  <p>
+    <strong><%= Fund.human_attribute_name 'rate_id' %></strong>:
+    <%= @fund.rate_id %>
+  </p>
+
+  <p>
+     <%= @fund.trust_funds.inspect   %>
+  </p>
+
+  <p>
+      
+  </p>
+
+  <p>
+    <%= @fund.payments.inspect %>
+  </p>
+</div>
+<div class="form-actions">
+  <%= link_to t('label.edit'), edit_fund_path(@fund) if can? :update, @fund %> |
+  <%= link_to t('label.list'), funds_path %>
+</div>

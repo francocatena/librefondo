@@ -1,0 +1,24 @@
+<div class="readonly-data">
+  <h2><%= @stock %></h2>
+
+  <p>
+    <strong><%= Stock.human_attribute_name 'load_date' %></strong>:
+    <%= @stock.load_date %>
+  </p>
+  <p>
+    <strong><%= Stock.human_attribute_name 'ric' %></strong>:
+    <%= @stock.ric %>
+  </p>
+  <p>
+    <strong><%= Stock.human_attribute_name 'fund_id' %></strong>:
+    <%= @stock.fund_id %>
+  </p>
+
+  <p>
+    <td><%= @stock.trust_funds.inspect %></td>
+  </p>
+</div>
+<div class="form-actions">
+  <%= link_to t('label.edit'), edit_stock_path(@stock) if can? :update, @stock %> |
+  <%= link_to t('label.list'), stocks_path %>
+</div>
