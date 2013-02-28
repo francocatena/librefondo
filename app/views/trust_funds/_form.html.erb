@@ -2,29 +2,66 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :fund_id %>
     <%= f.input :name %>
+    <%= f.association :funds, collection: Fund.all, value_method: :id, label_method: :name, as: :check_boxes, include_blank: false %>
+    <%= f.input :ric %>
     <%= f.input :base %>
     <%= f.input :coupon_tv %>
     <%= f.input :coupon_tv_cap %>
     <%= f.input :coupon_tv_floor %>
     <%= f.input :nominal_value %>
-    <%= f.input :rate_id %>
     <%= f.input :differential_margin %>
     <%= f.input :broadcast_cost %>
     <%= f.input :price %>
     <%= f.input :rating %>
-    <%= f.input :buy_date %>
-    <%= f.input :settlement_date %>
-    <%= f.input :broadcast_date %>
-    <%= f.input :expiration_date %>
+    <%= f.input :buy_date, as: :date_picker %>
+    <%= f.input :settlement_date, as: :date_picker %>
+    <%= f.input :broadcast_date, as: :date_picker %>
+    <%= f.input :expiration_date, as: :date_picker %>
     <%= f.input :tenancy %>
     <%= f.input :purchase_price %>
     <%= f.input :tcpe %>
     <%= f.input :minimal_cost %>
     <%= f.input :maximal_cost %>
-    <%= f.input :kind_id %>
-    <%= f.input :cut_date %>
+    <%= f.input :cut_date, as: :date_picker %>
+    <%= f.input :number_of_payments, input_html: { data: { url: new_payment_path } } %>
+    <%= f.input :identifier %>
+    Total duration: <%= total_duration(f.object) %> <br>
+    Total mduration: <%= total_mduration(f.object) %>
+  </div>
+
+  <div id="payments">
+    <table class="table-condensed" data-endless-container="true">
+      <thead>
+        <tr class="span12">
+          <th></th>
+          <th><%= Payment.human_attribute_name 'date' %></th>
+          <th><%= Payment.human_attribute_name 'pay_day' %></th>
+          <th><%= Payment.human_attribute_name 'amortization' %></th> 
+          <th><%= Payment.human_attribute_name 'residual_value' %></th>
+          <th><%= Payment.human_attribute_name 'amount' %></th>
+          <th><%= Payment.human_attribute_name 'estimated_amount' %></th>
+          <th><%= Payment.human_attribute_name 'amount_per_notice' %></th>
+          <th><%= Payment.human_attribute_name 'total' %></th>
+          <th><%= Payment.human_attribute_name 'residual_value_per_notice' %></th>
+          <th><%= Payment.human_attribute_name 'period_rate' %></th>
+          <th><%= Payment.human_attribute_name 'net_value' %></th>
+          <th><%= Payment.human_attribute_name 'income_value' %></th>
+          <th><%= Payment.human_attribute_name 'total_value' %></th>
+          <th><%= Payment.human_attribute_name 'duration' %></th>
+          <th><%= Payment.human_attribute_name 'mduration' %></th>
+        </tr>
+      </thead>  
+      <tbody>
+      <%= f.simple_fields_for :payments do |j_f| %>
+        <%= render partial: 'payment', locals: { f: j_f } %>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div id="new_payment">
+      <%= link_to_add_fields(t('view.trust_funds.new'), f, :payments) %>
+    </div>
   </div>
 
   <div class="form-actions">
@@ -32,3 +69,5 @@
     <%= f.button :submit, class: 'btn-primary' %>
   </div>
 <% end %>
+
+

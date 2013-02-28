@@ -14,6 +14,16 @@
               name: 'users', controllers: 'users', path: users_path
             ) if can?(:read, User) %>
           </ul>
+          <ul class="nav">
+            <%= show_menu_link(
+              name: 'trust_funds', controllers: 'trust_funds', path: trust_funds_path
+            ) if can?(:read, TrustFund) %>
+          </ul> 
+          <ul class="nav">
+            <%= show_menu_link(
+              name: 'funds', controllers: 'funds', path: funds_path
+            ) if can?(:read, Fund) %>
+          </ul>         
           <%= render partial: 'shared/nav_search' %>
           <ul class="nav pull-right">
             <li>

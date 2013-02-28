@@ -1,0 +1,2 @@
+$("#payment-#{@payment.to_param}").append('<%= j render(template: 'payments/show', formats: [:html]) %>');
+$('#payment-#{@payment.to_param}').focus();

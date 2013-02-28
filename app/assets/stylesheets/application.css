@@ -18,4 +18,7 @@
  *= require common-responsive
  *= require devise
  *= require users
-*/
+ *= require payments
+ *= require trust_funds
+ *= require funds
+ */

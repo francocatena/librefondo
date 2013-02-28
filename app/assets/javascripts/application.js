@@ -22,4 +22,8 @@
 //= require date_pickers
 //= require endless_pagination
 //= require mobile
+//= require dynamic_form
+//= require effect_helper
 //= require users
+//= require trust_funds
+//= require funds

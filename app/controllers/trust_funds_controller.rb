@@ -4,7 +4,8 @@ class TrustFundsController < ApplicationController
   # GET /trust_funds.json
   def index
     @title = t('view.trust_funds.index_title')
-    @trust_funds = TrustFund.page(params[:page])
+    @searchable = true
+    @trust_funds = TrustFund.filtered_list(params[:q]).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -67,7 +68,7 @@ class TrustFundsController < ApplicationController
 
     respond_to do |format|
       if @trust_fund.update_attributes(params[:trust_fund])
-        format.html { redirect_to @trust_fund, notice: t('view.trust_funds.correctly_updated') }
+        format.html { redirect_to edit_trust_fund_path(@trust_fund), notice: t('view.trust_funds.correctly_updated') }
         format.json { head :ok }
       else
         format.html { render action: 'edit' }
@@ -89,4 +90,5 @@ class TrustFundsController < ApplicationController
       format.json { head :ok }
     end
   end
+
 end

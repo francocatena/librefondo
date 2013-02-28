@@ -6,29 +6,11 @@
       <table class="table resource-list">
         <thead>
           <tr>
-            <th><%= TrustFund.human_attribute_name 'fund_id' %></th>
             <th><%= TrustFund.human_attribute_name 'name' %></th>
-            <th><%= TrustFund.human_attribute_name 'base' %></th>
-            <th><%= TrustFund.human_attribute_name 'coupon_tv' %></th>
-            <th><%= TrustFund.human_attribute_name 'coupon_tv_cap' %></th>
-            <th><%= TrustFund.human_attribute_name 'coupon_tv_floor' %></th>
-            <th><%= TrustFund.human_attribute_name 'nominal_value' %></th>
-            <th><%= TrustFund.human_attribute_name 'rate_id' %></th>
-            <th><%= TrustFund.human_attribute_name 'differential_margin' %></th>
+            <th><%= TrustFund.human_attribute_name 'fund' %></th>
             <th><%= TrustFund.human_attribute_name 'broadcast_cost' %></th>
-            <th><%= TrustFund.human_attribute_name 'price' %></th>
-            <th><%= TrustFund.human_attribute_name 'rating' %></th>
-            <th><%= TrustFund.human_attribute_name 'buy_date' %></th>
-            <th><%= TrustFund.human_attribute_name 'settlement_date' %></th>
-            <th><%= TrustFund.human_attribute_name 'broadcast_date' %></th>
-            <th><%= TrustFund.human_attribute_name 'expiration_date' %></th>
             <th><%= TrustFund.human_attribute_name 'tenancy' %></th>
             <th><%= TrustFund.human_attribute_name 'purchase_price' %></th>
-            <th><%= TrustFund.human_attribute_name 'tcpe' %></th>
-            <th><%= TrustFund.human_attribute_name 'minimal_cost' %></th>
-            <th><%= TrustFund.human_attribute_name 'maximal_cost' %></th>
-            <th><%= TrustFund.human_attribute_name 'kind_id' %></th>
-            <th><%= TrustFund.human_attribute_name 'cut_date' %></th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -36,29 +18,11 @@
         <tbody>
           <% @trust_funds.each do |trust_fund| %>
             <tr>
-              <td><%= trust_fund.fund_id %></td>
               <td><%= trust_fund.name %></td>
-              <td><%= trust_fund.base %></td>
-              <td><%= trust_fund.coupon_tv %></td>
-              <td><%= trust_fund.coupon_tv_cap %></td>
-              <td><%= trust_fund.coupon_tv_floor %></td>
-              <td><%= trust_fund.nominal_value %></td>
-              <td><%= trust_fund.rate_id %></td>
-              <td><%= trust_fund.differential_margin %></td>
-              <td><%= trust_fund.broadcast_cost %></td>
-              <td><%= trust_fund.price %></td>
-              <td><%= trust_fund.rating %></td>
-              <td><%= trust_fund.buy_date %></td>
-              <td><%= trust_fund.settlement_date %></td>
-              <td><%= trust_fund.broadcast_date %></td>
-              <td><%= trust_fund.expiration_date %></td>
-              <td><%= trust_fund.tenancy %></td>
-              <td><%= trust_fund.purchase_price %></td>
-              <td><%= trust_fund.tcpe %></td>
-              <td><%= trust_fund.minimal_cost %></td>
-              <td><%= trust_fund.maximal_cost %></td>
-              <td><%= trust_fund.kind_id %></td>
-              <td><%= trust_fund.cut_date %></td>
+              <td><%= truncate(trust_fund.funds.map(&:name).join(','), length: 6) %></td>
+              <td><%= number_to_currency(trust_fund.broadcast_cost, precision: 3) %></td>
+              <td><%= number_to_currency(trust_fund.tenancy, precision: 3) %></td>
+              <td><%= number_to_currency(trust_fund.purchase_price, precision: 6) %></td>
               <td><%= link_to_show trust_fund %></td>
               <td><%= link_to_edit edit_trust_fund_path(trust_fund) if can? :update, trust_fund %></td>
               <td><%= link_to_destroy trust_fund if can? :destroy, trust_fund %></td>

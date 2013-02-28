@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
-  
+  layout ->(controller) { controller.request.xhr? ? false : 'application' }
+
   # GET /payments
   # GET /payments.json
   def index
@@ -19,6 +20,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
 
     respond_to do |format|
+      format.js
       format.html # show.html.erb
       format.json { render json: @payment }
     end
@@ -31,6 +33,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @payment }
     end
@@ -76,6 +79,14 @@ class PaymentsController < ApplicationController
     end
   rescue ActiveRecord::StaleObjectError
     redirect_to edit_payment_url(@payment), alert: t('view.payments.stale_object_error')
+  end
+
+  def more_info
+    @payment = Payment.find(params[:payment_id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # DELETE /payments/1

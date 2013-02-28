@@ -1,0 +1,53 @@
+<div class="info-<%= @payment.to_param %> span9 more-info" style="display:none">
+  <td>
+    <p>
+      <strong><%= Payment.human_attribute_name 'residual_value' %></strong>:
+      <%= residual_value_in_percentage(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'amount' %></strong>
+      <%= @payment.amount %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'estimated_amount' %></strong>
+      <%= estimated_amount_in_percentage(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'amount_per_notice' %></strong>
+      <%= amount_per_notice(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'total_estimated_amount' %></strong>
+      <%= number_to_currency(total_estimated_amount(@payment)) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'residual_value_per_notice' %></strong>
+      <%= residual_value_per_notice(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'period_rate' %></strong>
+      <%= @payment.period_rate %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'net_value' %></strong>
+      <%= @payment.net_value %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'income_value' %></strong>
+      <%= income_value(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'total_value' %></strong>
+      <%= total_value(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'duration' %></strong>
+      <%= duration(@payment) %>
+    </p>
+    <p>
+      <strong><%= Payment.human_attribute_name 'mduration' %></strong>
+      <%= mduration(@payment) %>
+    </p>
+  </td>
+</div>
+ 

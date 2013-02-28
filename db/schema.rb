@@ -11,71 +11,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213193031) do
+ActiveRecord::Schema.define(:version => 20130227190703) do
+
+  create_table "funders", :force => true do |t|
+    t.integer  "trust_fund_id"
+    t.integer  "fund_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "funds", :force => true do |t|
     t.string   "name",                        :null => false
-    t.integer  "rate_id",                     :null => false
     t.integer  "lock_version", :default => 0, :null => false
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
-
-  add_index "funds", ["rate_id"], :name => "index_funds_on_rate_id"
-
-  create_table "kinds", :force => true do |t|
-    t.string   "name",                        :null => false
-    t.integer  "daily_acrual"
-    t.date     "cut_date"
-    t.integer  "lock_version", :default => 0, :null => false
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "kinds", ["name"], :name => "index_kinds_on_name"
 
   create_table "payments", :force => true do |t|
     t.date     "date"
-    t.integer  "trust_fund_id",                                               :null => false
+    t.integer  "trust_fund_id",                                                  :null => false
     t.string   "kind"
-    t.integer  "lock_version",                                 :default => 0, :null => false
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-    t.decimal  "amount",        :precision => 23, :scale => 8
+    t.integer  "lock_version",                                    :default => 0, :null => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "amount",           :precision => 23, :scale => 8
+    t.decimal  "estimated_amount", :precision => 23, :scale => 8
+    t.decimal  "amortization",     :precision => 23, :scale => 8
+    t.integer  "pay_day"
+    t.decimal  "daily_acrual",     :precision => 23, :scale => 8
+    t.decimal  "residual_value",   :precision => 23, :scale => 8
+    t.decimal  "period_rate",      :precision => 23, :scale => 8
+    t.decimal  "net_value",        :precision => 23, :scale => 8
   end
 
   add_index "payments", ["trust_fund_id"], :name => "index_payments_on_trust_fund_id"
 
-  create_table "rates", :force => true do |t|
-    t.string   "name",                                                        :null => false
-    t.decimal  "value",         :precision => 23, :scale => 8
-    t.string   "kind"
-    t.integer  "lock_version",                                 :default => 0, :null => false
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-    t.integer  "trust_fund_id"
-  end
-
-  add_index "rates", ["name"], :name => "index_rates_on_name"
-  add_index "rates", ["trust_fund_id"], :name => "index_rates_on_trust_fund_id"
-
-  create_table "stocks", :force => true do |t|
-    t.date     "load_date"
-    t.string   "ric"
-    t.integer  "fund_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "trust_funds", :force => true do |t|
-    t.integer  "fund_id",                                                           :null => false
     t.string   "name",                                                              :null => false
     t.integer  "base"
     t.decimal  "coupon_tv",           :precision => 23, :scale => 8
     t.decimal  "coupon_tv_cap",       :precision => 23, :scale => 8
     t.decimal  "coupon_tv_floor",     :precision => 23, :scale => 8
     t.decimal  "nominal_value",       :precision => 23, :scale => 8
-    t.integer  "rate_id",                                                           :null => false
     t.decimal  "differential_margin", :precision => 23, :scale => 8
     t.decimal  "broadcast_cost",      :precision => 23, :scale => 8
     t.decimal  "price",               :precision => 23, :scale => 8
@@ -89,18 +66,16 @@ ActiveRecord::Schema.define(:version => 20130213193031) do
     t.decimal  "tcpe",                :precision => 23, :scale => 8
     t.decimal  "minimal_cost",        :precision => 23, :scale => 8
     t.decimal  "maximal_cost",        :precision => 23, :scale => 8
-    t.integer  "kind_id",                                                           :null => false
     t.date     "cut_date"
     t.integer  "lock_version",                                       :default => 0, :null => false
     t.datetime "created_at",                                                        :null => false
     t.datetime "updated_at",                                                        :null => false
-    t.integer  "stock_id"
+    t.integer  "number_of_payments"
+    t.string   "identifier"
+    t.string   "ric"
   end
 
-  add_index "trust_funds", ["fund_id"], :name => "index_trust_funds_on_fund_id"
-  add_index "trust_funds", ["kind_id"], :name => "index_trust_funds_on_kind_id"
   add_index "trust_funds", ["name"], :name => "index_trust_funds_on_name"
-  add_index "trust_funds", ["rate_id"], :name => "index_trust_funds_on_rate_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                   :null => false

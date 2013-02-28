@@ -1,0 +1,8 @@
+if ($('.info-<%= @payment.to_param %>').size() == 0) {
+  $('#payment-<%= @payment.to_param %>').append('<%= j render(template: 'payments/_more_info', formats: [:html]) %>');
+  $('.info-<%= @payment.to_param %>').toggle()
+} else {
+  $('.info-<%= @payment.to_param %>').toggle()
+  $('#payment-<%= @payment.to_param %>').focus();
+}
+

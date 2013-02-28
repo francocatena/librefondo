@@ -4,7 +4,8 @@ class FundsController < ApplicationController
   # GET /funds.json
   def index
     @title = t('view.funds.index_title')
-    @funds = Fund.page(params[:page])
+    @searchable = true
+    @funds = Fund.filtered_list(params[:q]).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

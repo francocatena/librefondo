@@ -1,14 +1,13 @@
 <div class="readonly-data">
   <h2><%= @trust_fund %></h2>
   <p>
-    <strong><%= TrustFund.human_attribute_name 'fund_id' %></strong>:
-    <%= @trust_fund.fund_id %>
-  </p>
-  <p>
     <strong><%= TrustFund.human_attribute_name 'name' %></strong>:
     <%= @trust_fund.name %>
   </p>
-  <p>
+   <p>
+    <strong><%= TrustFund.human_attribute_name 'fund_id' %></strong>:
+    <%= @trust_fund.fund_id %>
+  </p> <p>
     <strong><%= TrustFund.human_attribute_name 'base' %></strong>:
     <%= @trust_fund.base %>
   </p>
@@ -27,16 +26,6 @@
   <p>
     <strong><%= TrustFund.human_attribute_name 'nominal_value' %></strong>:
     <%= @trust_fund.nominal_value %>
-  </p>
-  <p>
-    <strong>rates:</strong>
-    <%= @trust_fund.rate.name %>
-    <%= @trust_fund.rate.kind  %>
-    <%= @trust_fund.rate.value %>
-  </p>
-  <p>
-    <strong><%= TrustFund.human_attribute_name 'rate_id' %></strong>:
-    <%= @trust_fund.rate_id %>
   </p>
   <p>
     <strong><%= TrustFund.human_attribute_name 'differential_margin' %></strong>:
@@ -89,10 +78,6 @@
   <p>
     <strong><%= TrustFund.human_attribute_name 'maximal_cost' %></strong>:
     <%= @trust_fund.maximal_cost %>
-  </p>
-  <p>
-    <strong><%= TrustFund.human_attribute_name 'kind_id' %></strong>:
-    <%= @trust_fund.kind_id %>
   </p>
   <p>
     <strong><%= TrustFund.human_attribute_name 'cut_date' %></strong>:
