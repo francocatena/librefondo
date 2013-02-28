@@ -1,12 +1,10 @@
-<div class="info-<%= @payment.to_param %> span9 more-info" style="display:none">
-  <td>
     <p>
       <strong><%= Payment.human_attribute_name 'residual_value' %></strong>:
       <%= residual_value_in_percentage(@payment) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'amount' %></strong>
-      <%= @payment.amount %>
+      <%= number_to_currency(@payment.amount, precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'estimated_amount' %></strong>
@@ -14,15 +12,15 @@
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'amount_per_notice' %></strong>
-      <%= amount_per_notice(@payment) %>
+      <%= number_to_currency(amount_per_notice(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'total_estimated_amount' %></strong>
-      <%= number_to_currency(total_estimated_amount(@payment)) %>
+      <%= number_to_currency(total_estimated_amount(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'residual_value_per_notice' %></strong>
-      <%= residual_value_per_notice(@payment) %>
+      <%= number_to_currency(residual_value_per_notice(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'period_rate' %></strong>
@@ -34,20 +32,17 @@
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'income_value' %></strong>
-      <%= income_value(@payment) %>
+      <%= number_to_currency(income_value(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'total_value' %></strong>
-      <%= total_value(@payment) %>
+      <%= number_to_currency(total_value(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'duration' %></strong>
-      <%= duration(@payment) %>
+      <%= number_to_currency(duration(@payment), precision: 3) %>
     </p>
     <p>
       <strong><%= Payment.human_attribute_name 'mduration' %></strong>
-      <%= mduration(@payment) %>
+      <%= number_to_currency(mduration(@payment), precision: 3) %>
     </p>
-  </td>
-</div>
- 

@@ -6,7 +6,7 @@ class PaymentTest < ActiveSupport::TestCase
   end
 
   test 'create' do
-    assert_difference ['Payment.count', 'Version.count'] do
+    assert_difference ['Payment.count'] do
       @payment = Payment.create(Fabricate.attributes_for(:payment))
     end 
   end
@@ -14,35 +14,16 @@ class PaymentTest < ActiveSupport::TestCase
   test 'update' do
     assert_difference 'Version.count' do
       assert_no_difference 'Payment.count' do
-        assert @payment.update_attributes(attr: 'Updated')
+        assert @payment.update_attributes(pay_day: 31)
       end
     end
 
-    assert_equal 'Updated', @payment.reload.attr
+    assert_equal 31, @payment.reload.pay_day
   end
     
   test 'destroy' do 
     assert_difference 'Version.count' do
       assert_difference('Payment.count', -1) { @payment.destroy }
     end
-  end
-    
-  test 'validates blank attributes' do
-    @payment.attr = ''
-    
-    assert @payment.invalid?
-    assert_equal 1, @payment.errors.size
-    assert_equal [error_message_from_model(@payment, :attr, :blank)],
-      @payment.errors[:attr]
-  end
-    
-  test 'validates unique attributes' do
-    new_payment = Fabricate(:payment)
-    @payment.attr = new_payment.attr
-
-    assert @payment.invalid?
-    assert_equal 1, @payment.errors.size
-    assert_equal [error_message_from_model(@payment, :attr, :taken)],
-      @payment.errors[:attr]
   end
 end

@@ -1,24 +1,14 @@
-<fieldset class="target row">
+<fieldset class="target">
   <tr id="payment-<%= f.object.to_param %>" class="span9">
     <td><%= link_to '&#xe04e;'.html_safe, payment_more_info_path(f.object) ,class: 'iconic', remote: true if f.object.persisted? %></td>
-    <td><%= f.input :date, as: :date_picker, label: false, input_html: { class: 'input-small' } %></td>
+    <td><%= f.input :date, as: :date_picker, label: false, input_html: { class: 'input-medium' } %></td>
     <%= f.input :trust_fund_id, as: :hidden, value: f.object, label: false %>
-    <td><%= f.input :pay_day, label: false, input_html: { class: 'input-small' } %></td>
-    <td><%= f.input :amortization, label: false, input_html: { class: 'input-small' } %></td>
-    <td><%= f.input :residual_value, input_html: { value: residual_value_in_percentage(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :amount, label: false, input_html: { class: 'input-small' } %></td>
-    <td><%= f.input :estimated_amount, input_html: { value: estimated_amount_in_percentage(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :amount_per_notice, input_html: { value: amount_per_notice(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= number_to_currency(total_estimated_amount(f.object), precision: 3) %></td>
-    <td><%= f.input :residual_value_per_notice, input_html: { value: residual_value_per_notice(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :period_rate, label: false, input_html: { class: 'input-small' } %></td>
-    <td><%= f.input :net_value, label: false, input_html: { class: 'input-small' } %></td>
-    <td><%= f.input :income_value, input_html: { value: income_value(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :total_value, input_html: { value: total_value(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :duration, input_html: { value: duration(f.object), class: 'input-small' }, label: false %></td>
-    <td><%= f.input :mduration, input_html: { value: mduration(f.object), class: 'input-small' }, label: false %></td>
+    <td><%= f.input :pay_day, label: false, input_html: { class: 'input-medium' } %></td>
+    <td><%= f.input :amortization, label: false, input_html: { class: 'input-medium' } %></td>
+    <td><%= f.input :amount, label: false, input_html: { class: 'input-medium' } %></td>
     <%= f.input :id, as: :hidden %>
     <%= f.input :lock_version, as: :hidden %>
     <td><%= link_to_remove_nested_item(f) %></td>
+    <td><div class="info-<%= f.object.id %> span3 more-info"></div></td>
   </tr>
 </fieldset>

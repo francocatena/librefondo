@@ -68,7 +68,7 @@ class TrustFundsController < ApplicationController
 
     respond_to do |format|
       if @trust_fund.update_attributes(params[:trust_fund])
-        format.html { redirect_to edit_trust_fund_path(@trust_fund), notice: t('view.trust_funds.correctly_updated') }
+        format.html { redirect_to @trust_fund, notice: t('view.trust_funds.correctly_updated') }
         format.json { head :ok }
       else
         format.html { render action: 'edit' }

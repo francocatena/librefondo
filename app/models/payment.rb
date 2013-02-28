@@ -1,18 +1,24 @@
 class Payment < ActiveRecord::Base
   has_paper_trail
 
-  default_scope -> { order('date ASC') }
-
-  belongs_to :trust_fund, inverse_of: :payments
-
+  # Setup accessible (or protected) attributes for your model
   attr_accessible :date, :trust_fund_id, :kind, :amount, :estimated_amount, :amortization, :pay_day, :daily_acrual, :lock_version, :residual_value, :amount_per_notice, :residual_value_per_notice, :period_rate, :net_value, :income_value, :total_amount, :total_value, :duration, :mduration
 
   attr_accessor :amount_per_notice, :residual_value_per_notice, :income_value, :total_amount, :total_value, :duration, :mduration
 
+  # Scopes
+  default_scope -> { order('date ASC') }
+
+  # Validations
   validates :trust_fund, presence: true
 
+  # Relations
+  belongs_to :trust_fund, inverse_of: :payments
+
+  # Callbacks
   before_save :set_estimated_amount, :set_residual_value, :set_period_rate, :set_net_value
 
+  # Instance or Class methods
   def set_estimated_amount
     estimated_amount = (self.amortization/self.trust_fund.broadcast_cost)
     if estimated_amount < 0

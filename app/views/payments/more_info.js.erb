@@ -1,8 +1,8 @@
-if ($('.info-<%= @payment.to_param %>').size() == 0) {
-  $('#payment-<%= @payment.to_param %>').append('<%= j render(template: 'payments/_more_info', formats: [:html]) %>');
-  $('.info-<%= @payment.to_param %>').toggle()
+if ($('.info-<%= @payment.to_param %>').is(':empty')) {
+  $('.info-<%= @payment.to_param %>').effect("highlight");
 } else {
   $('.info-<%= @payment.to_param %>').toggle()
-  $('#payment-<%= @payment.to_param %>').focus();
 }
 
+$('.info-<%= @payment.to_param %>').html('<%= j render(template: 'payments/_more_info', formats: [:html]) %>');
+$('#payment-<%= @payment.to_param %>').effect("highlight");

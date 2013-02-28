@@ -50,7 +50,7 @@ class TrustFundsControllerTest < ActionController::TestCase
 
   test "should update trust_fund" do
     put :update, id: @trust_fund, 
-      trust_fund: Fabricate.attributes_for(:trust_fund, attr: 'value')
+      trust_fund: Fabricate.attributes_for(:trust_fund, name: 'value')
     assert_redirected_to trust_fund_url(assigns(:trust_fund))
   end
 

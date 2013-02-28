@@ -1,5 +1,6 @@
 Fabricator(:payment) do
   date { rand(1.year).ago }
-  trust_fund_id { 100 * rand }
-  kind { Faker::Lorem.sentence }
+  pay_day { 30 * rand }
+  amortization { 100 * rand }
+  trust_fund_id { Fabricate(:trust_fund).id }
 end

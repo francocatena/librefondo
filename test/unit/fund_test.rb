@@ -14,11 +14,11 @@ class FundTest < ActiveSupport::TestCase
   test 'update' do
     assert_difference 'Version.count' do
       assert_no_difference 'Fund.count' do
-        assert @fund.update_attributes(attr: 'Updated')
+        assert @fund.update_attributes(name: 'Updated')
       end
     end
 
-    assert_equal 'Updated', @fund.reload.attr
+    assert_equal 'Updated', @fund.reload.name
   end
     
   test 'destroy' do 
@@ -28,21 +28,21 @@ class FundTest < ActiveSupport::TestCase
   end
     
   test 'validates blank attributes' do
-    @fund.attr = ''
+    @fund.name = ''
     
     assert @fund.invalid?
     assert_equal 1, @fund.errors.size
-    assert_equal [error_message_from_model(@fund, :attr, :blank)],
-      @fund.errors[:attr]
+    assert_equal [error_message_from_model(@fund, :name, :blank)],
+      @fund.errors[:name]
   end
     
   test 'validates unique attributes' do
     new_fund = Fabricate(:fund)
-    @fund.attr = new_fund.attr
+    @fund.name = new_fund.name
 
     assert @fund.invalid?
     assert_equal 1, @fund.errors.size
-    assert_equal [error_message_from_model(@fund, :attr, :taken)],
-      @fund.errors[:attr]
+    assert_equal [error_message_from_model(@fund, :name, :taken)],
+      @fund.errors[:name]
   end
 end

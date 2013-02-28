@@ -50,7 +50,7 @@ class FundsControllerTest < ActionController::TestCase
 
   test "should update fund" do
     put :update, id: @fund, 
-      fund: Fabricate.attributes_for(:fund, attr: 'value')
+      fund: Fabricate.attributes_for(:fund, name: 'value')
     assert_redirected_to fund_url(assigns(:fund))
   end
 
