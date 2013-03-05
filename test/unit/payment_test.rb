@@ -21,10 +21,10 @@ class PaymentTest < ActiveSupport::TestCase
   end
   
   test 'verify existing attributes' do 
-    assert_equal @payment.residual_value, BigDecimal.new("0.9")
-    assert_equal @payment.estimated_amount, BigDecimal.new("0.1")
-    assert_equal '%.5f' % @payment.period_rate, "0.00822"
-    assert_equal '%.5f' % @payment.net_value, "0.00008"
+    assert_equal BigDecimal.new("0.9"), @payment.residual_value
+    assert_equal BigDecimal.new("0.1"), @payment.estimated_amount
+    assert_equal "0.00822", '%.5f' % @payment.period_rate
+    assert_equal "0.00008", '%.5f' % @payment.net_value
   end
 
   test 'create with more payments' do
@@ -35,10 +35,10 @@ class PaymentTest < ActiveSupport::TestCase
       ))     
     end
 
-    assert_equal @payment.residual_value, BigDecimal.new("0.8")
-    assert_equal @payment.estimated_amount, BigDecimal.new("0.1")
-    assert_equal '%.5f' % @payment.period_rate, "0.00822"
-    assert_equal '%.5f' % @payment.net_value, "0.00007"     
+    assert_equal BigDecimal.new("0.8"), @payment.residual_value
+    assert_equal BigDecimal.new("0.1"), @payment.estimated_amount
+    assert_equal "0.00822", '%.5f' % @payment.period_rate
+    assert_equal "0.00007", '%.5f' % @payment.net_value
   end
 
   test 'update' do

@@ -14,13 +14,13 @@ class TrustFundTest < ActiveSupport::TestCase
         ))
     end
 
-    assert_equal @trust_fund.coupon_tv, BigDecimal.new("0.12")
-    assert_equal @trust_fund.coupon_tv_floor, BigDecimal.new("0.15")
-    assert_equal @trust_fund.coupon_tv_cap, BigDecimal.new("0.17")
-    assert_equal @trust_fund.differential_margin, BigDecimal.new("0.10")
-    assert_equal @trust_fund.tcpe, BigDecimal.new("0.19")
-    assert_equal @trust_fund.minimal_cost, BigDecimal.new("0.12")
-    assert_equal @trust_fund.maximal_cost, BigDecimal.new("0.17")
+    assert_equal BigDecimal.new("0.12"), @trust_fund.coupon_tv
+    assert_equal BigDecimal.new("0.15"), @trust_fund.coupon_tv_floor
+    assert_equal BigDecimal.new("0.17"), @trust_fund.coupon_tv_cap
+    assert_equal BigDecimal.new("0.10"), @trust_fund.differential_margin
+    assert_equal BigDecimal.new("0.19"), @trust_fund.tcpe
+    assert_equal BigDecimal.new("0.12"), @trust_fund.minimal_cost
+    assert_equal BigDecimal.new("0.17"), @trust_fund.maximal_cost
   end
 
   test 'update' do

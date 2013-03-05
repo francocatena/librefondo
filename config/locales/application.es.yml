@@ -45,6 +45,7 @@
         price: 'Precio'
         rating: 'Calificacion'
         buy_date: 'Fecha de compra'
+        broadcast_date: 'Fecha de emision'
         settlement_date: 'Fecha de liquidacion'
         expiration_date: 'Fecha de expiracion'
         cut_date: 'Fecha de corte'

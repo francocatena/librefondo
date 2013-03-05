@@ -81,10 +81,11 @@
         <%= render partial: 'payment', locals: { f: j_f } %>
       <% end %>
 
-      <div id="new_payment">
-        <%= link_to_add_fields(t('view.trust_funds.new'), f, :payments) %>
-      </div>
     </div>
+  </div>
+  
+  <div id="new_payment" class="pull-left">
+    <%= link_to_add_fields(t('view.trust_funds.new'), f, :payments) %>
   </div>
 
   <div class="form-actions">
