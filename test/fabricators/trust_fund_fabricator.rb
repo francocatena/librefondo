@@ -1,6 +1,7 @@
 Fabricator(:trust_fund) do
   name { Faker::Name.name }
   base { 100 * rand }
+  fund_ids { Fabricate(:fund).id }
   coupon_tv { 100.0 * rand }
   coupon_tv_cap { 100.0 * rand }
   coupon_tv_floor { 100.0 * rand }

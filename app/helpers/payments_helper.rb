@@ -7,18 +7,6 @@ module PaymentsHelper
     (payment.residual_value || 0)*(payment.trust_fund.try(:tenancy) || 0)
   end
 
-  def estimated_amount_in_percentage(payment)
-    (payment.estimated_amount || 0)*BigDecimal.new(100)
-  end
-  
-  def residual_value_in_percentage(payment)
-    (payment.residual_value || 0)*BigDecimal.new(100)
-  end
-
-  def income_value_in_percentage(payment)
-    (payment.income_value || 0)*BigDecimal.new(100)
-  end
-
   def income_value(payment)
     (payment.net_value || 0)*(payment.trust_fund.try(:tenancy) || 0)*BigDecimal.new(100)
   end
@@ -27,8 +15,8 @@ module PaymentsHelper
     (income_value(payment) || 0)+(amount_per_notice(payment) || 0)
   end
 
-  def in_percent(object)
-    object*BigDecimal.new(100)
+  def in_percent(value)
+    "#{value*BigDecimal.new(100)}%"
   end
 
   def total_estimated_amount(payment)

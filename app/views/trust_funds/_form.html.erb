@@ -1,55 +1,89 @@
 <%= simple_form_for(@trust_fund) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.association :funds, collection: Fund.all, value_method: :id, label_method: :name, as: :check_boxes, include_blank: false %>
-    <%= f.input :ric %>
-    <%= f.input :base %>
-    <%= f.input :coupon_tv %>
-    <%= f.input :coupon_tv_cap %>
-    <%= f.input :coupon_tv_floor %>
-    <%= f.input :nominal_value %>
-    <%= f.input :differential_margin %>
-    <%= f.input :broadcast_cost %>
-    <%= f.input :price %>
-    <%= f.input :rating %>
-    <%= f.input :buy_date, as: :date_picker %>
-    <%= f.input :settlement_date, as: :date_picker %>
-    <%= f.input :broadcast_date, as: :date_picker %>
-    <%= f.input :expiration_date, as: :date_picker %>
-    <%= f.input :tenancy %>
-    <%= f.input :purchase_price %>
-    <%= f.input :tcpe %>
-    <%= f.input :minimal_cost %>
-    <%= f.input :maximal_cost %>
-    <%= f.input :cut_date, as: :date_picker %>
-    <%= f.input :number_of_payments, input_html: { data: { url: new_payment_path } } %>
-    <%= f.input :identifier %>
-    Total duration: <%= total_duration(f.object) %> <br>
-    Total mduration: <%= total_mduration(f.object) %>
-  </div>
+  <div class="form-inputs row">
+    <div class="span12">
+      <div class="row">
+        <div class="control-group span3">
+          <%= f.input :name %>
+          <div class="row">
+            <div class="span3 well well-small">
+              <div class="row">
+                <%= f.association :funds, collection: Fund.all, value_method: :id,
+                    label_method: :name, as: :check_boxes, include_blank: false,
+                    wrapper_class: "span3"
+                %>
+              </div>
+            </div>
+          </div>
+          <%= f.input :base %>
+          <%= f.input :coupon_tv %>
+          <%= f.input :coupon_tv_cap %>
+          <%= f.input :coupon_tv_floor %>
+        </div>
+        <div class="control-group span3">
+          <%= f.input :nominal_value %>
+          <%= f.input :differential_margin %>
+          <%= f.input :broadcast_cost %>
+          <%= f.input :price %>
+          <%= f.input :rating %>
+          <%= f.input :tenancy %>
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>
+                  <strong>Total duration:</strong> 
+                </th>
+                <th>
+                  <strong>Total mduration:</strong> 
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>  
+                  <%= number_to_currency(total_mduration(f.object), precision: 3) %>
+                </td>
+                <td>
+                  <%= number_to_currency(total_duration(f.object), precision: 3) %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="control-group span3">
+          <%= f.input :buy_date, as: :date_picker %>
+          <%= f.input :settlement_date, as: :date_picker %>
+          <%= f.input :broadcast_date, as: :date_picker %>
+          <%= f.input :expiration_date, as: :date_picker %>
+          <%= f.input :cut_date, as: :date_picker %>
+          <%= f.input :purchase_price %>
+        </div>
+        <div class="control-group span3">
+          <%= f.input :tcpe %>
+          <%= f.input :minimal_cost %>
+          <%= f.input :maximal_cost %>
+          <%= f.input :number_of_payments, input_html: { data: { url: new_payment_path } } %>
+          <%= f.input :identifier %>
+        </div>
+      </div>
+    </div>
 
-  <div id="payments">
-    <table class="table-condensed" data-endless-container="true">
-      <thead>
-        <tr class="span12">
-          <th></th>
-          <th><%= Payment.human_attribute_name 'date' %></th>
-          <th><%= Payment.human_attribute_name 'pay_day' %></th>
-          <th><%= Payment.human_attribute_name 'amortization' %></th> 
-          <th><%= Payment.human_attribute_name 'amount' %></th>
-        </tr>
-      </thead>  
-      <tbody>
+    <div id="payments">
+      <div>
+        <div class="span2"><strong><%= Payment.human_attribute_name 'date' %></strong></div>
+        <div class="span2"><strong><%= Payment.human_attribute_name 'amortization' %></strong></div>
+        <div class="span2"><strong><%= Payment.human_attribute_name 'pay_day' %></strong></div>
+        <div class="span2"><strong><%= Payment.human_attribute_name 'amount' %></strong></div>
+        <div class="span2"></div>
+      </div>
       <%= f.simple_fields_for :payments do |j_f| %>
         <%= render partial: 'payment', locals: { f: j_f } %>
       <% end %>
-      </tbody>
-    </table>
 
-    <div id="new_payment">
-      <%= link_to_add_fields(t('view.trust_funds.new'), f, :payments) %>
+      <div id="new_payment">
+        <%= link_to_add_fields(t('view.trust_funds.new'), f, :payments) %>
+      </div>
     </div>
   </div>
 
@@ -58,5 +92,3 @@
     <%= f.button :submit, class: 'btn-primary' %>
   </div>
 <% end %>
-
-

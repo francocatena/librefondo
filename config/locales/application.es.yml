@@ -10,7 +10,16 @@
       user:
         one: 'Usuario'
         other: 'Usuarios'
-      
+      fund:
+        one: 'Fondo'
+        other: 'Fondos'
+      trust_fund:
+        one: 'Fideicomiso'
+        other: 'Fideicomisos'
+      payment:
+        one: 'Pago'
+        other: 'Pagos'
+
     attributes:
       user:
         name: 'Nombre'
@@ -21,8 +30,52 @@
         roles:
           one: 'Perfil'
           other: 'Perfiles'
-        remember_me: 'Recordarme'
-        
+          remember_me: 'Recordarme'
+      fund:
+        name: 'Nombre'
+      trust_fund:
+        name: 'Nombre'
+        base: 'Base'
+        coupon_tv: 'Cupon TV'
+        coupon_tv_cap: 'Cupon TV CAP'
+        coupon_tv_floor: 'Cupon TV FLOOR'
+        nominal_value: 'Valor Nominal'
+        differential_margin: 'Margen Diferencial'
+        broadcast_cost: 'Precio de emision'
+        price: 'Precio'
+        rating: 'Calificacion'
+        buy_date: 'Fecha de compra'
+        settlement_date: 'Fecha de liquidacion'
+        expiration_date: 'Fecha de expiracion'
+        cut_date: 'Fecha de corte'
+        tenancy: 'Tenencia'
+        purchase_price: 'Precio de compra'
+        tcpe: 'TCPE'
+        minimal_cost: 'C. Minimo'
+        maximal_cost: 'C. Maximo'
+        fund_ids: 'Fondos'
+        number_of_payments: 'Cantidad de pagos'
+        identifier: 'Identificador'
+        duration: 'Duration'
+        mduration: 'MDuration'
+      payment:
+        name: 'Pago'
+        date: 'Fecha'
+        amortization: 'Amortizacion'
+        pay_day: 'Cantidad de dias al pago'
+        amount: 'Monto'
+        residual_value: 'Valor residual'
+        estimated_amount: 'Monto estimado'
+        amount_per_notice: 'Monto por aviso de pago'
+        total_estimated_amount: 'Total monto estimado'
+        residual_value_per_notice: 'Valor residual por aviso de pago'
+        period_rate: 'Tasa periodo'
+        net_value: 'Valor neto'
+        income_value: 'Valor ingreso'
+        total_value: 'Valor total'
+        duration: 'Duration'
+        mduration: 'MDuration'
+
   errors:
     title: 'Error'
     access_denied: 'No tiene permisos para acceder al contenido'
@@ -38,12 +91,14 @@
     new: 'Nuevo'
     search: 'Buscar'
     show: 'Ver'
+    more_info: 'Mas informacion'
     
   menu:
     actions:
       logout: 'Salir de la aplicación'
     users: 'Usuarios'
-    
+    funds: 'Fondos'
+    trust_funds: 'Fideicomisos' 
   messages:
     confirmation: '¿Está seguro?'
     
@@ -72,3 +127,5 @@
       roles:
         admin: 'Administrador'
         regular: 'Normal'
+    trust_funds:
+      new: 'Nuevo'

@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(:version => 20130227190703) do
     t.datetime "updated_at",                                                        :null => false
     t.integer  "number_of_payments"
     t.string   "identifier"
-    t.string   "ric"
   end
 
   add_index "trust_funds", ["name"], :name => "index_trust_funds_on_name"

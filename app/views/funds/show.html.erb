@@ -1,21 +1,32 @@
 <div class="readonly-data">
-  <h2><%= @fund %></h2>
-
-  <p>
-    <strong><%= Fund.human_attribute_name 'name' %></strong>:
+  <h2>
     <%= @fund.name %>
-  </p>
-  <p>
-     <%= @fund.trust_funds.inspect   %>
-  </p>
+  </h2>
 
-  <p>
-      
-  </p>
+  <div class="row">
+    <div class="span12">
+      <table class="table resource-list">
+        <thead>
+          <tr>
+            <th><%= Fund.human_attribute_name 'name' %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-  <p>
-    <%= @fund.payments.inspect %>
-  </p>
+        <tbody>
+          <% @fund.trust_funds.each do |trust_fund| %>
+            <tr>
+              <td><%= trust_fund.name %></td>
+              <td><%= link_to_show trust_fund %></td>
+              <td><%= link_to_edit edit_trust_fund_path(trust_fund) if can? :update, trust_fund %></td>
+              <td><%= link_to_destroy trust_fund if can? :destroy, trust_fund %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
 <div class="form-actions">
   <%= link_to t('label.edit'), edit_fund_path(@fund) if can? :update, @fund %> |

@@ -1,8 +1,2 @@
-if ($('.info-<%= @payment.to_param %>').is(':empty')) {
-  $('.info-<%= @payment.to_param %>').effect("highlight");
-} else {
-  $('.info-<%= @payment.to_param %>').toggle()
-}
-
-$('.info-<%= @payment.to_param %>').html('<%= j render(template: 'payments/_more_info', formats: [:html]) %>');
-$('#payment-<%= @payment.to_param %>').effect("highlight");
+$('.info-<%= @payment.to_param %>').popover({html: 'true', placement: 'bottom', content: "<%= j render(template: 'payments/_more_info', formats: [:html]) %>"}).popover('show');
+$('.info-<%= @payment.to_param %>').removeAttr('data-remote')

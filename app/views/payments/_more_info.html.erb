@@ -1,48 +1,136 @@
-    <p>
-      <strong><%= Payment.human_attribute_name 'residual_value' %></strong>:
-      <%= residual_value_in_percentage(@payment) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'amount' %></strong>
-      <%= number_to_currency(@payment.amount, precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'estimated_amount' %></strong>
-      <%= estimated_amount_in_percentage(@payment) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'amount_per_notice' %></strong>
-      <%= number_to_currency(amount_per_notice(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'total_estimated_amount' %></strong>
-      <%= number_to_currency(total_estimated_amount(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'residual_value_per_notice' %></strong>
-      <%= number_to_currency(residual_value_per_notice(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'period_rate' %></strong>
-      <%= @payment.period_rate %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'net_value' %></strong>
-      <%= @payment.net_value %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'income_value' %></strong>
-      <%= number_to_currency(income_value(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'total_value' %></strong>
-      <%= number_to_currency(total_value(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'duration' %></strong>
-      <%= number_to_currency(duration(@payment), precision: 3) %>
-    </p>
-    <p>
-      <strong><%= Payment.human_attribute_name 'mduration' %></strong>
-      <%= number_to_currency(mduration(@payment), precision: 3) %>
-    </p>
+<div class="row">
+  <div class="span3">
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          <%= Payment.human_attribute_name 'residual_value' %></strong>
+        </th>
+        <th>
+          <strong><%= Payment.human_attribute_name 'amount' %></strong>  
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= in_percent(@payment.residual_value) %>
+        </td>
+        <td>
+          <%= number_to_currency(@payment.amount, precision: 3) %>
+        </td>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          <strong><%= Payment.human_attribute_name 'estimated_amount' %></strong>
+        </th>
+        <th>
+          <strong><%= Payment.human_attribute_name 'amount_per_notice' %></strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= in_percent(@payment.estimated_amount) %>
+        </td>
+        <td>
+          <%= number_to_currency(amount_per_notice(@payment), precision: 3) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th> 
+          <strong><%= Payment.human_attribute_name 'total_estimated_amount' %></strong>
+        </th>
+        <th>
+          <strong><%= Payment.human_attribute_name 'residual_value_per_notice' %></strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td>
+        <%= number_to_currency(total_estimated_amount(@payment), precision: 3) %>
+      </td>
+      <td>
+        <%= number_to_currency(residual_value_per_notice(@payment), precision: 3) %>
+      </td> 
+    </tbody>
+  </table>
+
+  </div>
+
+  <div class="span3">
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          <strong><%= Payment.human_attribute_name 'period_rate' %></strong>
+        </th>
+        <th>
+          <strong><%= Payment.human_attribute_name 'net_value' %></strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <td>
+        <%= in_percent(@payment.period_rate) %>
+      </td>
+      <td>
+        <%= number_to_currency(@payment.net_value, precision: 3) %>
+      </td> 
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          <strong><%= Payment.human_attribute_name 'income_value' %></strong>
+        </th>
+        <th>
+          <strong><%= Payment.human_attribute_name 'total_value' %></strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <td>
+        <%= number_to_currency(income_value(@payment), precision: 3) %>
+      </td>
+      <td>
+        <%= number_to_currency(total_value(@payment), precision: 3) %>
+      </td>   
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          <strong><%= Payment.human_attribute_name 'duration' %></strong>
+        </th>
+        <th>
+         <strong><%= Payment.human_attribute_name 'mduration' %></strong>
+        </td> 
+      </tr>
+    </thead>
+    <tbody>
+      <td>
+        <%= number_to_currency(duration(@payment), precision: 3) %>
+      </td>
+      <td>
+        <%= number_to_currency(mduration(@payment), precision: 3) %>
+      </td>
+    </tbody>
+  </table>
+  </div>
+</div>

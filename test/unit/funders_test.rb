@@ -6,7 +6,7 @@ class FunderTest < ActiveSupport::TestCase
   end
 
   test 'create' do
-    assert_difference ['Funder.count'] do
+    assert_difference 'Funder.count', 2 do
       @funder = Funder.create(Fabricate.attributes_for(:funder))
     end 
   end

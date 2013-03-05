@@ -7,10 +7,22 @@ class TrustFundTest < ActiveSupport::TestCase
 
   test 'create' do
     assert_difference ['TrustFund.count'] do
-      @trust_fund = TrustFund.create(Fabricate.attributes_for(:trust_fund))
-    end 
+      @trust_fund = TrustFund.create(Fabricate.attributes_for(:trust_fund,
+          coupon_tv: 12, coupon_tv_floor: 15, coupon_tv_cap: 17,
+          differential_margin: 10, tcpe: 19, minimal_cost: 12,
+          maximal_cost: 17
+        ))
+    end
+
+    assert_equal @trust_fund.coupon_tv, BigDecimal.new("0.12")
+    assert_equal @trust_fund.coupon_tv_floor, BigDecimal.new("0.15")
+    assert_equal @trust_fund.coupon_tv_cap, BigDecimal.new("0.17")
+    assert_equal @trust_fund.differential_margin, BigDecimal.new("0.10")
+    assert_equal @trust_fund.tcpe, BigDecimal.new("0.19")
+    assert_equal @trust_fund.minimal_cost, BigDecimal.new("0.12")
+    assert_equal @trust_fund.maximal_cost, BigDecimal.new("0.17")
   end
-    
+
   test 'update' do
     assert_difference 'Version.count' do
       assert_no_difference 'TrustFund.count' do

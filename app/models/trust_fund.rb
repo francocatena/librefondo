@@ -16,6 +16,7 @@ class TrustFund < ActiveRecord::Base
   validates :name, presence: true
   validates :name, length: { maximum: 255 }, allow_nil: true, allow_blank: true
   validates :name, uniqueness: { case_sensitive: false }, allow_nil: true, allow_blank: true
+  validates :fund_ids, presence: true
 
   # Relations
   has_many :funders

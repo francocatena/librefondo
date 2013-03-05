@@ -1,14 +1,27 @@
-<fieldset class="target">
-  <tr id="payment-<%= f.object.to_param %>" class="span9">
-    <td><%= link_to '&#xe04e;'.html_safe, payment_more_info_path(f.object) ,class: 'iconic', remote: true if f.object.persisted? %></td>
-    <td><%= f.input :date, as: :date_picker, label: false, input_html: { class: 'input-medium' } %></td>
-    <%= f.input :trust_fund_id, as: :hidden, value: f.object, label: false %>
-    <td><%= f.input :pay_day, label: false, input_html: { class: 'input-medium' } %></td>
-    <td><%= f.input :amortization, label: false, input_html: { class: 'input-medium' } %></td>
-    <td><%= f.input :amount, label: false, input_html: { class: 'input-medium' } %></td>
-    <%= f.input :id, as: :hidden %>
-    <%= f.input :lock_version, as: :hidden %>
-    <td><%= link_to_remove_nested_item(f) %></td>
-    <td><div class="info-<%= f.object.id %> span3 more-info"></div></td>
-  </tr>
-</fieldset>
+<div class="">
+  <fieldset class="target">
+    <div id="payment-<%= f.object.to_param %>" class="span12">
+      <div class="span2"><%= f.input :date, as: :date_picker, label: false, input_html: { class: 'input-medium' } %></div>
+      <%= f.input :trust_fund_id, as: :hidden, value: f.object, label: false %>
+      <div class="span2"><%= f.input :amortization, label: false, input_html: { class: 'input-medium' } %></div>
+      <div class="span2"><%= f.input :pay_day, label: false, input_html: { class: 'input-medium' } %></div>
+      <div class="span2"><%= f.input :amount, label: false, input_html: { class: 'input-medium' } %></div>
+      <div>
+        <%= f.input :id, as: :hidden %>
+        <%= f.input :lock_version, as: :hidden %>
+      </div>
+      <div  class="span2">
+        <div class="actions">
+          <%= (link_to '<span class="badge badge-info">&#x2139;</span>'.html_safe, payment_more_info_path(f.object),
+               remote: true, class: "iconic popoverized info-#{f.object.id}",
+               data: { original_title: t('label.more_info'), show_tooltip: true }
+              
+              ) if f.object.persisted? %>
+        </div>
+        <div class="actions">
+          <%= link_to_remove_nested_item(f) %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>

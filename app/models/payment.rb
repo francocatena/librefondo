@@ -10,7 +10,7 @@ class Payment < ActiveRecord::Base
   default_scope -> { order('date ASC') }
 
   # Validations
-  validates :trust_fund, presence: true
+  validates :trust_fund, :date, :amortization, presence: true
 
   # Relations
   belongs_to :trust_fund, inverse_of: :payments
@@ -20,7 +20,7 @@ class Payment < ActiveRecord::Base
 
   # Instance or Class methods
   def set_estimated_amount
-    estimated_amount = (self.amortization/self.trust_fund.broadcast_cost)
+    estimated_amount = self.amortization.nil? ? 0 : (self.amortization/self.trust_fund.broadcast_cost)
     if estimated_amount < 0
       self.estimated_amount = 0
     else
@@ -41,7 +41,7 @@ class Payment < ActiveRecord::Base
   end
 
   def set_period_rate
-    self.period_rate = (self.trust_fund.try(:tcpe)/self.trust_fund.try(:base))*self.pay_day
+    self.period_rate = (self.trust_fund.try(:tcpe)/self.trust_fund.try(:base))*self.try(:pay_day)
   end
 
   def set_net_value

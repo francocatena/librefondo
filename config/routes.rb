@@ -2,7 +2,7 @@ Activos::Application.routes.draw do
   resources :trust_funds
   resources :funds
 
-  resources :payments do  
+  resources :payments, only: [:new] do  
     get :more_info
   end
 

@@ -13,3 +13,18 @@ new Rule
     $(document).on 'change', '#trust_fund_number_of_payments', @map.replace_function
   unload: ->
     $(document).off 'change', '#trust_fund_number_of_payments', @map.replace_function
+
+new Rule
+  condition: -> $('#c_trust_funds a.popoverized').length
+  load: ->
+    @map.replace_function = (event, data) ->
+      if $(this).data('popover') instanceof $.fn.popover.Constructor
+        event.stopPropagation()
+        event.preventDefault()
+        $(this).popover('destroy')
+        $(this).attr('data-remote', true)
+
+    $(document).on 'click', 'a.popoverized', @map.replace_function
+  unload: ->
+    $(document).off 'click', 'a.popoverized', @map.replace_function
+ 
