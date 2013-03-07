@@ -1,4 +1,4 @@
-Activos::Application.routes.draw do
+Librefondo::Application.routes.draw do
   resources :trust_funds
   resources :funds
 

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Activos::Application.load_tasks
+Librefondo::Application.load_tasks

@@ -15,10 +15,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: activos_development
+  database: librefondo_development
   pool: 5
-  username: activos
-  password: activos
+  username: librefondo
+  password: librefondo
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -41,15 +41,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: activos_test
+  database: librefondo_test
   pool: 5
-  username: <%= ENV['TRAVIS'] ? 'postgres' : 'activos' %>
-  password: <%= ENV['TRAVIS'] ? '' : 'activos' %>
+  username: <%= ENV['TRAVIS'] ? 'postgres' : 'librefondo' %>
+  password: <%= ENV['TRAVIS'] ? '' : 'librefondo' %>
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: activos_production
+  database: librefondo_production
   pool: 5
-  username: activos
-  password: activos
+  username: librefondo
+  password: librefondo

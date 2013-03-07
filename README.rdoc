@@ -1,10 +1,10 @@
-= Activos
+= Librefondo
 
-http://github.com/kainlite/activos
+http://github.com/kainlite/librefondo
 
-=== Build Status {<img src="https://secure.travis-ci.org/francocatena/activos.png"/>}[http://travis-ci.org/kainlite/activos]
+=== Build Status {<img src="https://secure.travis-ci.org/cirope/librefondo.png"/>}[http://travis-ci.org/cirope/librefondo]
 
-=== Dependency Status {<img src="https://gemnasium.com/francocatena/activos.png?travis"/>}[https://gemnasium.com/kainlite/activos]
+=== Dependency Status {<img src="https://gemnasium.com/cirope/librefondo.png?travis"/>}[https://gemnasium.com/cirope/librefondo]
 
 == (The MIT License)
 
