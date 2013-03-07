@@ -2,13 +2,13 @@
 
 http://github.com/kainlite/librefondo
 
-=== Build Status {<img src="https://secure.travis-ci.org/cirope/librefondo.png"/>}[http://travis-ci.org/cirope/librefondo]
+=== Build Status {<img src="https://secure.travis-ci.org/kainlite/librefondo.png"/>}[http://travis-ci.org/kainlite/librefondo]
 
-=== Dependency Status {<img src="https://gemnasium.com/cirope/librefondo.png?travis"/>}[https://gemnasium.com/cirope/librefondo]
+=== Dependency Status {<img src="https://gemnasium.com/kainlite/librefondo.png?travis"/>}[https://gemnasium.com/kainlite/librefondo]
 
 == (The MIT License)
 
-Copyright (c) 2012 Franco Catena
+Copyright (c) 2013 Franco Catena
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
