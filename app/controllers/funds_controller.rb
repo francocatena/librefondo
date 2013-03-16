@@ -1,4 +1,5 @@
 class FundsController < ApplicationController
+  before_filter :parameters
   
   # GET /funds
   # GET /funds.json
@@ -89,5 +90,11 @@ class FundsController < ApplicationController
       format.html { redirect_to funds_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def parameters
+    params.permit!  
   end
 end

@@ -1,5 +1,6 @@
 class TrustFundsController < ApplicationController
-  
+  before_filter :parameters
+
   # GET /trust_funds
   # GET /trust_funds.json
   def index
@@ -91,4 +92,10 @@ class TrustFundsController < ApplicationController
     end
   end
 
+
+  private
+
+  def parameters
+    params.permit!
+  end
 end

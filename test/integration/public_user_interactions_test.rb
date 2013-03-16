@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'test_helper'
+require 'minitest_helper'
 
 class PublicUserInteractionsTest < ActionDispatch::IntegrationTest
   test 'should ask for login' do

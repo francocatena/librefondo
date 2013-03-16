@@ -1,7 +1,8 @@
 class <%= class_name %> < ActiveRecord::Base
   has_paper_trail
 
-  attr_accessible <%= attributes.map { |a| ":#{a.name}" }.join(', ') %>
+  # Deprecated in Rails 4
+  # attr_accessible <%= attributes.map { |a| ":#{a.name}" }.join(', ') %>
 
   <% if attributes.any?(&:has_uniq_index?) -%>
     <% uniqueness_attrs = [] -%>

@@ -6,7 +6,8 @@ class TrustFund < ActiveRecord::Base
   PERCENTS = %w(coupon_tv coupon_tv_cap coupon_tv_floor differential_margin tcpe minimal_cost maximal_cost)
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :fund_id, :name, :base, :coupon_tv, :coupon_tv_cap, :coupon_tv_floor, :nominal_value, :differential_margin, :broadcast_cost, :price, :rating, :buy_date, :settlement_date, :broadcast_date, :expiration_date, :tenancy, :purchase_price, :tcpe, :minimal_cost, :maximal_cost, :cut_date, :payments_attributes, :number_of_payments, :identifier, :lock_version, :total, :ric, :fund_ids
+  # Deprecated in rails 4
+  # attr_accessible :fund_id, :name, :base, :coupon_tv, :coupon_tv_cap, :coupon_tv_floor, :nominal_value, :differential_margin, :broadcast_cost, :price, :rating, :buy_date, :settlement_date, :broadcast_date, :expiration_date, :tenancy, :purchase_price, :tcpe, :minimal_cost, :maximal_cost, :cut_date, :payments_attributes, :number_of_payments, :identifier, :lock_version, :total, :ric, :fund_ids
 
   attr_accessor :fund_id ,:total
  
@@ -36,6 +37,6 @@ class TrustFund < ActiveRecord::Base
   end
 
   def self.filtered_list(query)
-    query.present? ? magick_search(query) : scoped
+    query.present? ? magick_search(query) : all
   end
 end

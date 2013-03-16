@@ -1,6 +1,7 @@
 <% module_namespacing do -%>
 class <%= controller_class_name %>Controller < ApplicationController
-  
+  before_filter :parameters
+
   # GET <%= route_url %>
   # GET <%= route_url %>.json
   def index
@@ -89,6 +90,13 @@ class <%= controller_class_name %>Controller < ApplicationController
       format.html { redirect_to <%= index_helper %>_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def parameters
+    # TODO: Allow just the needed params!
+    params.permit!
   end
 end
 <% end -%>

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'minitest_helper'
 
 class UsersTest < ActionDispatch::IntegrationTest
   test 'scroll in endless index' do

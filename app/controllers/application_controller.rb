@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
         @title = t('errors.title')
         
         if response.redirect_url.blank?
+          p exception
           render template: 'shared/show_error', locals: { error: exception }
         end
 

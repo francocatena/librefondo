@@ -2,7 +2,8 @@ class Payment < ActiveRecord::Base
   has_paper_trail
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :date, :trust_fund_id, :kind, :amount, :estimated_amount, :amortization, :pay_day, :daily_acrual, :lock_version, :residual_value, :amount_per_notice, :residual_value_per_notice, :period_rate, :net_value, :income_value, :total_amount, :total_value, :duration, :mduration
+  # Deprecated in rails 4
+  # attr_accessible :date, :trust_fund_id, :kind, :amount, :estimated_amount, :amortization, :pay_day, :daily_acrual, :lock_version, :residual_value, :amount_per_notice, :residual_value_per_notice, :period_rate, :net_value, :income_value, :total_amount, :total_value, :duration, :mduration
 
   attr_accessor :amount_per_notice, :residual_value_per_notice, :income_value, :total_amount, :total_value, :duration, :mduration
 

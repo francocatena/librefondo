@@ -4,7 +4,8 @@ class Fund < ActiveRecord::Base
   has_magick_columns name: :string
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name
+  # Deprecated in rails 4
+  # attr_accessible :name
  
   # Scopes
 
@@ -22,6 +23,6 @@ class Fund < ActiveRecord::Base
 
   # Instance or Class methods
   def self.filtered_list(query)
-    query.present? ? magick_search(query) : scoped
+    query.present? ? magick_search(query) : all
   end
 end

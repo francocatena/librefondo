@@ -11,11 +11,12 @@ class User < ActiveRecord::Base
     :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :lastname, :email, :password, :password_confirmation,
-    :role, :remember_me, :lock_version
+  # Deprecated in rails 4
+  # attr_accessible :name, :lastname, :email, :password, :password_confirmation,
+  #  :role, :remember_me, :lock_version
   
   # Scopes
-  default_scope order('lastname ASC')
+  default_scope -> { order('lastname ASC') }
   
   # Validations
   validates :name, presence: true
@@ -26,7 +27,7 @@ class User < ActiveRecord::Base
 
   # Instance or Class methods
   def initialize(attributes = nil, options = {})
-    super(attributes, options)
+    super(attributes)
     
     self.role ||= :regular
   end
@@ -44,6 +45,6 @@ class User < ActiveRecord::Base
   end
   
   def self.filtered_list(query)
-    query.present? ? magick_search(query) : scoped
+    query.present? ? magick_search(query) : all
   end
 end

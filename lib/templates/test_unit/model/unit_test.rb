@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'minitest_helper'
 
 <% module_namespacing do -%>
 class <%= class_name %>Test < ActiveSupport::TestCase
